@@ -36,9 +36,7 @@ On submission, you'll receive user data in the following order:
 - Web3Forms (for form handling)
 - GitHub Pages (for hosting)
 
-## 👩‍💻 Author
-
-**Mansi Sharma**  
+🙌 Made with ❤️ by [Mansi Sharma]
 🔗 [GitHub] (https://github.com/mansisharma1221)
 
 
