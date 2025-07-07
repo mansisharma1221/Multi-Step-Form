@@ -1,0 +1,144 @@
+<!-- Save as index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multi-Step Form</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Step Sidebar Items -->
+        <div class="step active"><div class="circle">1</div><div class="step-info"><p>Step 1</p><h4>Your Info</h4></div></div>
+        <div class="step"><div class="circle">2</div><div class="step-info"><p>Step 2</p><h4>Select Plan</h4></div></div>
+        <div class="step"><div class="circle">3</div><div class="step-info"><p>Step 3</p><h4>Add-Ons</h4></div></div>
+        <div class="step"><div class="circle">4</div><div class="step-info"><p>Step 4</p><h4>Summary</h4></div></div>
+      </div>
+
+      <!-- Form Section -->
+      <div class="form-section">
+        <form id="multiStepForm" action="https://api.web3forms.com/submit" method="POST">
+          <!-- Web3Forms Key -->
+          <input type="hidden" name="access_key" value="75b671d5-035e-4d4c-8885-d0230bbe0776" />
+
+          <!-- Step 1 -->
+          <div class="form-step active">
+            <h2>Personal info</h2>
+            <p>Please provide your name, email address, and phone number.</p>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="Name" placeholder="e.g. Stephen King" required />
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="Email" placeholder="e.g. stephenking@gmail.com" required />
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="Phone" placeholder="e.g. +1 234 567 890" required />
+          </div>
+
+          <!-- Step 2 -->
+          <div class="form-step">
+            <h2>Select your plan</h2>
+            <p>You have the option of monthly or yearly billing.</p>
+            <div class="plan-options">
+              <label class="plan-card">
+                <input type="radio" name="plan" value="Arcade" checked />
+                <div class="plan-content">
+                  <img src="https://img.icons8.com/color/48/joystick.png" alt="Arcade" />
+                  <div><h4>Arcade</h4><p class="plan-price">$9/mo</p><p class="plan-offer">2 months free</p></div>
+                </div>
+              </label>
+
+              <label class="plan-card">
+                <input type="radio" name="plan" value="Advanced" />
+                <div class="plan-content">
+                  <img src="https://img.icons8.com/ios-filled/50/controller.png" alt="Advanced" />
+                  <div><h4>Advanced</h4><p class="plan-price">$12/mo</p><p class="plan-offer">2 months free</p></div>
+                </div>
+              </label>
+
+              <label class="plan-card">
+                <input type="radio" name="plan" value="Pro" />
+                <div class="plan-content">
+                  <img src="https://img.icons8.com/color/48/console.png" alt="Pro" />
+                  <div><h4>Pro</h4><p class="plan-price">$15/mo</p><p class="plan-offer">2 months free</p></div>
+                </div>
+              </label>
+            </div>
+
+            <div class="toggle-container">
+              <span id="monthly-label">Monthly</span>
+              <label class="switch">
+                <input type="checkbox" id="billingToggle" />
+                <span class="slider"></span>
+              </label>
+              <span id="yearly-label">Yearly</span>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="form-step">
+            <h2>Pick add-ons</h2>
+            <p>Add-ons help enhance your experience.</p>
+
+            <label class="addon-card">
+              <input type="checkbox" name="addons[]" value="Online service" data-monthly="1" data-yearly="10" />
+              <div class="addon-content"><div class="addon-text"><h4 class="addon-title">Online service</h4><p>Access to multiplayer games</p></div><span class="addon-price">+$1/mo</span></div>
+            </label>
+
+            <label class="addon-card">
+              <input type="checkbox" name="addons[]" value="Larger storage" data-monthly="2" data-yearly="20" />
+              <div class="addon-content"><div class="addon-text"><h4 class="addon-title">Larger storage</h4><p>Extra 1TB of cloud save</p></div><span class="addon-price">+$2/mo</span></div>
+            </label>
+
+            <label class="addon-card">
+              <input type="checkbox" name="addons[]" value="Custom profile" data-monthly="2" data-yearly="20" />
+              <div class="addon-content"><div class="addon-text"><h4 class="addon-title">Customizable profile</h4><p>Custom theme on your profile</p></div><span class="addon-price">+$2/mo</span></div>
+            </label>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="form-step">
+            <h2>Finishing up</h2>
+            <p>Double-check everything looks OK before confirming.</p>
+            <div class="summary-box">
+              <div class="summary-plan">
+                <div><strong id="summary-plan-name">Arcade (Monthly)</strong><button type="button" id="changePlan">Change</button></div>
+                <span id="summary-plan-price">$9/mo</span>
+              </div>
+              <div class="summary-addons" id="summary-addons-list"></div>
+            </div>
+            <div class="summary-total">
+              <span>Total (per <span id="billing-type">month</span>)</span>
+              <strong id="summary-total-price">$12/mo</strong>
+            </div>
+          </div>
+
+          <!-- Step 5: Thank You Message -->
+          <div class="form-step thank-you">
+            <div class="thank-you-box">
+              <img src="https://img.icons8.com/color/96/checked--v1.png" alt="Thank you" />
+              <h2>Thank you!</h2>
+              <p>Thanks for confirming your subscription. We hope you have fun using our platform. If you ever need support, feel free to email us at <strong>support@example.com</strong>.</p>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="buttons">
+            <button type="button" id="prevBtn">Go Back</button>
+            <button type="button" id="nextBtn">Next Step</button>
+          </div>
+
+          <!-- Hidden Fields for Web3Forms -->
+          <input type="hidden" name="Selected Plan" id="form-plan" />
+          <input type="hidden" name="Billing Type" id="form-billing" />
+          <input type="hidden" name="Selected Addons" id="form-addons" />
+          <input type="hidden" name="Total Price" id="form-total" />
+
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
